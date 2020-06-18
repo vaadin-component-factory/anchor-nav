@@ -14,7 +14,7 @@ import com.vaadin.flow.component.html.H2;
  * @author Vaadin Ltd
  */
 @Tag("vcf-anchor-nav")
-@NpmPackage(value = "@vaadin-component-factory/vcf-anchor-nav", version = "1.0.1")
+@NpmPackage(value = "@vaadin-component-factory/vcf-anchor-nav", version = "1.0.2")
 @JsModule("@vaadin-component-factory/vcf-anchor-nav")
 @SuppressWarnings("serial")
 public class AnchorNav extends HtmlContainer {
@@ -24,11 +24,6 @@ public class AnchorNav extends HtmlContainer {
 	 */
 	public AnchorNavSection addSection(String title, Component... components) {
 		final AnchorNavSection section = new AnchorNavSection(title, components);
-		add(section);
-		return section;
-	}
-	public AnchorNavSection addSection(Component... components) {
-		final AnchorNavSection section = new AnchorNavSection(components);
 		add(section);
 		return section;
 	}
