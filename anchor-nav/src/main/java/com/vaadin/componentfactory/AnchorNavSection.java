@@ -4,30 +4,26 @@ import com.vaadin.componentfactory.util.SlotHelper;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HtmlContainer;
 import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.html.H2;
 
 @Tag("vcf-anchor-nav-section")
 public class AnchorNavSection extends HtmlContainer {
 
-	public AnchorNavSection(Component... components) {
+	public AnchorNavSection(String title, Component... components) {
+		setSectionTitle(title);
 		add(components);
-	}
-	public AnchorNavSection(String header, Component... components) {
-		setHeaderText(header);
-		add(components);
-	}
-
-	public void setHeaderText(String headerText) {
-		if (headerText == null) {
-			headerText = "";
-		}
-		setHeader(new H2(headerText));
 	}
 
 	/**
-	 * Sets the component header
+	 * Sets the section title which is displayed in tab panel
 	 */
-	public void setHeader(Component header) {
+	public void setSectionTitle(String title) {
+		getElement().setAttribute("name", title);
+	}
+
+	/**
+	 * Sets the section header
+	 */
+	public void setSectionHeader(Component header) {
 		SlotHelper.clearSlot(getElement(), "header");
 
 		if (header != null) {
