@@ -19,6 +19,7 @@ package com.vaadin.componentfactory.demo;
 
 import com.vaadin.componentfactory.AnchorNav;
 import com.vaadin.componentfactory.AnchorNavSection;
+import com.vaadin.componentfactory.AnchorNavVariant;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
@@ -47,7 +48,8 @@ public class AnchorNavView extends DemoView {
 		// begin-source-example
 		// source-example-heading: Basic Example
 		AnchorNav anchorNav = new AnchorNav();
-		anchorNav.setHeight("50vh");
+		anchorNav.setHeightFull();
+		anchorNav.addThemeVariants(AnchorNavVariant.EXPAND_LAST);
 		anchorNav.setHeader(new H1("Main Header"));
 
 		Div introductionContent = new Div(
