@@ -18,7 +18,7 @@ import com.vaadin.flow.component.html.H2;
  * @author Vaadin Ltd
  */
 @Tag("vcf-anchor-nav")
-@NpmPackage(value = "@vaadin-component-factory/vcf-anchor-nav", version = "1.0.15")
+@NpmPackage(value = "@vaadin-component-factory/vcf-anchor-nav", version = "1.0.16")
 @JsModule("@vaadin-component-factory/vcf-anchor-nav")
 @SuppressWarnings("serial")
 public class AnchorNav extends HtmlContainer implements HasTheme {
