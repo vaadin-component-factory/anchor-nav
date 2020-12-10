@@ -13,6 +13,7 @@ import com.vaadin.flow.component.html.UnorderedList;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.demo.DemoView;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.RouteAlias;
 
 /**
  * Server-side component Example for the <code>vcf-anchor-nav</code> element.
@@ -20,6 +21,7 @@ import com.vaadin.flow.router.Route;
  * @author Vaadin Ltd
  */
 @Route("anchor-nav")
+@RouteAlias("")
 public class AnchorNavView extends DemoView {
 
 	@Override

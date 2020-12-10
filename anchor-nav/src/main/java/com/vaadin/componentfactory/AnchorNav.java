@@ -44,7 +44,12 @@ import com.vaadin.flow.component.html.H2;
 public class AnchorNav extends HtmlContainer implements HasTheme {
 
 	/**
-	 * Adds a section created from the given title and content.
+	 *  Adds a section created from the given title and content.
+	 *
+	 * @param title title of the section
+	 * @param components content
+	 *
+	 * @return the section
 	 */
 	public AnchorNavSection addSection(String title, Component... components) {
 		final AnchorNavSection section = new AnchorNavSection(title, components);
@@ -52,6 +57,11 @@ public class AnchorNav extends HtmlContainer implements HasTheme {
 		return section;
 	}
 
+	/**
+	 * Set the header text as a html h2 title
+	 *
+	 * @param headerText text of the header
+	 */
 	public void setHeaderText(String headerText) {
 		if (headerText == null) {
 			headerText = "";
@@ -61,6 +71,8 @@ public class AnchorNav extends HtmlContainer implements HasTheme {
 
 	/**
 	 * Sets the component header
+	 *
+	 * @param header component to add as a header
 	 */
 	public void setHeader(Component header) {
 		SlotHelper.clearSlot(getElement(), "header");
