@@ -1,5 +1,25 @@
 package com.vaadin.componentfactory;
 
+/*
+ * #%L
+ * Anchor Nav for Flow
+ * %%
+ * Copyright (C) 2020 Vaadin Ltd
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -18,7 +38,7 @@ import com.vaadin.flow.component.html.H2;
  * @author Vaadin Ltd
  */
 @Tag("vcf-anchor-nav")
-@NpmPackage(value = "@vaadin-component-factory/vcf-anchor-nav", version = "1.0.16")
+@NpmPackage(value = "@vaadin-component-factory/vcf-anchor-nav", version = "1.1.3")
 @JsModule("@vaadin-component-factory/vcf-anchor-nav")
 @SuppressWarnings("serial")
 public class AnchorNav extends HtmlContainer implements HasTheme {
