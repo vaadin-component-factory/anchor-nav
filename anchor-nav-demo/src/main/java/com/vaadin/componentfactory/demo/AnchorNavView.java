@@ -4,12 +4,15 @@ import com.vaadin.componentfactory.AnchorNav;
 import com.vaadin.componentfactory.AnchorNavSection;
 import com.vaadin.componentfactory.AnchorNavVariant;
 import com.vaadin.flow.component.Text;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.ListItem;
 import com.vaadin.flow.component.html.OrderedList;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.html.UnorderedList;
+import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.demo.DemoView;
 import com.vaadin.flow.router.Route;
@@ -64,9 +67,15 @@ public class AnchorNavView extends DemoView {
 		AnchorNavSection longSection = anchorNav.addSection("Section 5", new Span("Section 5 is long."));
 		longSection.setHeight("120vh");
 
-		anchorNav.addSection("Section 6", new Span("Section 6 content."));
+		AnchorNavSection lastSection = anchorNav.addSection("Section 6", new Span("Section 6 content."));
+		
+		Span selectedIndexLabel = new Span();
+		anchorNav.addSelectedSectionChangedListener(evt -> selectedIndexLabel.setText("Selected section index:" + evt.getSectionIndex()));
+		Button selectLastSection = new Button("Select last section", evt -> anchorNav.setSelectedSection(lastSection));
 
 		// end-source-example
-		addCard("Basic Example", anchorNav);
+		HorizontalLayout selectionLine = new HorizontalLayout(selectLastSection, selectedIndexLabel);
+		selectionLine.setAlignItems(Alignment.BASELINE);
+		addCard("Basic Example", selectionLine , anchorNav);
 	}
 }
