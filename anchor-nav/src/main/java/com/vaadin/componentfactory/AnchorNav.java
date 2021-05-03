@@ -37,6 +37,7 @@ import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.shared.Registration;
 
 /**
@@ -45,7 +46,7 @@ import com.vaadin.flow.shared.Registration;
  * @author Vaadin Ltd
  */
 @Tag("vcf-anchor-nav")
-@NpmPackage(value = "@vaadin-component-factory/vcf-anchor-nav", version = "1.2.4")
+@NpmPackage(value = "@vaadin-component-factory/vcf-anchor-nav", version = "1.2.7")
 @JsModule("@vaadin-component-factory/vcf-anchor-nav")
 @SuppressWarnings("serial")
 public class AnchorNav extends HtmlContainer implements HasTheme {
@@ -60,6 +61,20 @@ public class AnchorNav extends HtmlContainer implements HasTheme {
 	 */
 	public AnchorNavSection addSection(String title, Component... components) {
 		final AnchorNavSection section = new AnchorNavSection(title, components);
+		add(section);
+		return section;
+	}
+	
+	/**
+	 *  Adds a section created from the given Tab and content.
+	 *
+	 * @param sectionTab Tab of the section
+	 * @param components content
+	 *
+	 * @return the section
+	 */
+	public AnchorNavSection addSection(Tab sectionTab, Component... components) {
+		final AnchorNavSection section = new AnchorNavSection(sectionTab, components);
 		add(section);
 		return section;
 	}
@@ -109,7 +124,7 @@ public class AnchorNav extends HtmlContainer implements HasTheme {
      *            the zero-based index of the selected section
      */
     public void setSelectedSection(int selectedIndex) {
-        getElement().callJsFunction("_scrollToSection", selectedIndex);
+        getElement().callJsFunction("_setSelectedSection", selectedIndex);
     }
     
     /**

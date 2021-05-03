@@ -24,6 +24,7 @@ import com.vaadin.componentfactory.util.SlotHelper;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HtmlContainer;
 import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.tabs.Tab;
 
 @Tag("vcf-anchor-nav-section")
 public class AnchorNavSection extends HtmlContainer {
@@ -32,12 +33,29 @@ public class AnchorNavSection extends HtmlContainer {
 		setSectionTitle(title);
 		add(components);
 	}
+	
+	public AnchorNavSection(Tab titleTab, Component... components) {
+		setSectionTab(titleTab);
+		add(components);
+	}
 
 	/**
 	 * Sets the section title which is displayed in tab panel
 	 */
 	public void setSectionTitle(String title) {
 		getElement().setAttribute("name", title);
+	}
+
+	/**
+	 * Sets the section tab which is displayed in tab panel
+	 */
+	public void setSectionTab(Tab tab) {
+		SlotHelper.clearSlot(getElement(), "tab");
+		
+		if (tab != null) {
+			tab.getElement().setAttribute("slot", "tab");
+			getElement().appendChild(tab.getElement());
+		}
 	}
 
 	/**
