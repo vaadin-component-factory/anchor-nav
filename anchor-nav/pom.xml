@@ -3,7 +3,7 @@
 
     <groupId>com.vaadin.componentfactory</groupId>
     <artifactId>anchor-nav</artifactId>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
     <name>Anchor Nav for Flow</name>
     <description>Integration of vcf-anchor-nav for Vaadin platform</description>
 
