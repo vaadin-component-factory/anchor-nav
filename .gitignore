@@ -37,3 +37,4 @@ webpack.config.js
 webpack.generated.js
 
 
+/anchor-nav-demo/frontend/generated/
