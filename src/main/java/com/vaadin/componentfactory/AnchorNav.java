@@ -1,7 +1,5 @@
 package com.vaadin.componentfactory;
 
-import java.util.Iterator;
-
 /*
  * #%L
  * Anchor Nav for Flow
@@ -21,10 +19,6 @@ import java.util.Iterator;
  * limitations under the License.
  * #L%
  */
-
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import com.vaadin.componentfactory.util.SlotHelper;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEvent;
@@ -39,6 +33,9 @@ import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.shared.Registration;
+import java.util.Iterator;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Server-side component for the <code>vcf-anchor-nav</code> element.
@@ -46,15 +43,15 @@ import com.vaadin.flow.shared.Registration;
  * @author Vaadin Ltd
  */
 @Tag("vcf-anchor-nav")
-@NpmPackage(value = "@vaadin-component-factory/vcf-anchor-nav", version = "1.2.13")
+@NpmPackage(value = "@vaadin-component-factory/vcf-anchor-nav", version = "23.2.0")
 @JsModule("@vaadin-component-factory/vcf-anchor-nav")
 @SuppressWarnings("serial")
 public class AnchorNav extends HtmlContainer implements HasTheme {
-	
+
 	/**
-	 *  Adds a section created from the given title and content.
+	 * Adds a section created from the given title and content.
 	 *
-	 * @param title title of the section
+	 * @param title      title of the section
 	 * @param components content
 	 *
 	 * @return the section
@@ -64,9 +61,9 @@ public class AnchorNav extends HtmlContainer implements HasTheme {
 		add(section);
 		return section;
 	}
-	
+
 	/**
-	 *  Adds a section created from the given Tab and content.
+	 * Adds a section created from the given Tab and content.
 	 *
 	 * @param sectionTab Tab of the section
 	 * @param components content
@@ -104,83 +101,85 @@ public class AnchorNav extends HtmlContainer implements HasTheme {
 			getElement().appendChild(header.getElement());
 		}
 	}
-	
+
 	/**
-     * Adds theme variants to the component.
-     *
-     * @param variants
-     *            theme variants to add
-     */
-    public void addThemeVariants(AnchorNavVariant... variants) {
-        getThemeNames()
-                .addAll(Stream.of(variants).map(AnchorNavVariant::getVariantName)
-                        .collect(Collectors.toList()));
-    }
-    
-    /**
-     * Selects a section based on its zero-based index.
-     *
-     * @param selectedIndex
-     *            the zero-based index of the selected section
-     */
-    public void setSelectedSection(int selectedIndex) {
-        getElement().callJsFunction("_setSelectedSection", selectedIndex);
-    }
-    
-    /**
-     * Selects the given section.
-     *
-     * @param selectedSection
-     *            the section to select, not <code>null</code>
-     * @throws IllegalArgumentException
-     *             if {@code selectedSection} is not a child of this component
-     */
-    public void setSelectedSection(AnchorNavSection selectedSection) {
-        int selectedIndex = indexOf(selectedSection);
-        if (selectedIndex < 0) {
-            throw new IllegalArgumentException(
-                    "Section to select must be a child: " + selectedSection);
-        }
-        setSelectedSection(selectedIndex);
-    }
-    
-    private int indexOf(AnchorNavSection selectedSection) {
-        if (selectedSection == null) {
-            throw new IllegalArgumentException(
-                    "The 'selectedSection' parameter cannot be null");
-        }
-        Iterator<AnchorNavSection> it = this.getChildren()
-        		.filter(AnchorNavSection.class::isInstance)
-        		.map(AnchorNavSection.class::cast)
-        		.sequential()
-        		.iterator();
-        int index = 0;
-        while (it.hasNext()) {
-        	AnchorNavSection section = it.next();
-            if (section.equals(selectedSection)) {
-                return index;
-            }
-            index++;
-        }
-        return -1;
+	 * Adds theme variants to the component.
+	 *
+	 * @param variants
+	 *                 theme variants to add
+	 */
+	public void addThemeVariants(AnchorNavVariant... variants) {
+		getThemeNames()
+				.addAll(Stream.of(variants).map(AnchorNavVariant::getVariantName)
+						.collect(Collectors.toList()));
 	}
 
 	/**
-     * Adds a listener for {@link SelectedSectionChangedEvent}.
-     *
-     * @param listener
-     *            the listener to add, not <code>null</code>
-     * @return a handle that can be used for removing the listener
-     */
-    public Registration addSelectedSectionChangedListener(ComponentEventListener<SelectedSectionChangedEvent> listener) {
-        return addListener(SelectedSectionChangedEvent.class, listener);
-    }
-    
-    @DomEvent("selected-changed")
+	 * Selects a section based on its zero-based index.
+	 *
+	 * @param selectedIndex
+	 *                      the zero-based index of the selected section
+	 */
+	public void setSelectedSection(int selectedIndex) {
+		getElement().callJsFunction("_setSelectedSection", selectedIndex);
+	}
+
+	/**
+	 * Selects the given section.
+	 *
+	 * @param selectedSection
+	 *                        the section to select, not <code>null</code>
+	 * @throws IllegalArgumentException
+	 *                                  if {@code selectedSection} is not a child of
+	 *                                  this component
+	 */
+	public void setSelectedSection(AnchorNavSection selectedSection) {
+		int selectedIndex = indexOf(selectedSection);
+		if (selectedIndex < 0) {
+			throw new IllegalArgumentException(
+					"Section to select must be a child: " + selectedSection);
+		}
+		setSelectedSection(selectedIndex);
+	}
+
+	private int indexOf(AnchorNavSection selectedSection) {
+		if (selectedSection == null) {
+			throw new IllegalArgumentException(
+					"The 'selectedSection' parameter cannot be null");
+		}
+		Iterator<AnchorNavSection> it = this.getChildren()
+				.filter(AnchorNavSection.class::isInstance)
+				.map(AnchorNavSection.class::cast)
+				.sequential()
+				.iterator();
+		int index = 0;
+		while (it.hasNext()) {
+			AnchorNavSection section = it.next();
+			if (section.equals(selectedSection)) {
+				return index;
+			}
+			index++;
+		}
+		return -1;
+	}
+
+	/**
+	 * Adds a listener for {@link SelectedSectionChangedEvent}.
+	 *
+	 * @param listener
+	 *                 the listener to add, not <code>null</code>
+	 * @return a handle that can be used for removing the listener
+	 */
+	public Registration addSelectedSectionChangedListener(ComponentEventListener<SelectedSectionChangedEvent> listener) {
+		return addListener(SelectedSectionChangedEvent.class, listener);
+	}
+
+	@DomEvent("selected-changed")
 	public static class SelectedSectionChangedEvent extends ComponentEvent<AnchorNav> {
 		private int sectionIndex;
 
-		public SelectedSectionChangedEvent(AnchorNav source, boolean fromClient, @EventData("event.detail.index") int index) {
+		public SelectedSectionChangedEvent(AnchorNav source, boolean fromClient,
+				@EventData("event.detail.index") int index) {
 			super(source, fromClient);
 			this.sectionIndex = index;
 		}

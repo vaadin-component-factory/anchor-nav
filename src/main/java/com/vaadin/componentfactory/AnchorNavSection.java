@@ -33,7 +33,7 @@ public class AnchorNavSection extends HtmlContainer {
 		setSectionTitle(title);
 		add(components);
 	}
-	
+
 	public AnchorNavSection(Tab titleTab, Component... components) {
 		setSectionTab(titleTab);
 		add(components);
@@ -51,7 +51,7 @@ public class AnchorNavSection extends HtmlContainer {
 	 */
 	public void setSectionTab(Tab tab) {
 		SlotHelper.clearSlot(getElement(), "tab");
-		
+
 		if (tab != null) {
 			tab.getElement().setAttribute("slot", "tab");
 			getElement().appendChild(tab.getElement());
