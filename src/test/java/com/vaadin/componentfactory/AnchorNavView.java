@@ -12,6 +12,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.RouterLink;
 
 /**
  * Server-side component Example for the <code>vcf-anchor-nav</code> element.
@@ -32,6 +33,7 @@ public class AnchorNavView extends VerticalLayout {
         anchorNav.setHeightFull();
         anchorNav.addThemeVariants(AnchorNavVariant.EXPAND_LAST);
         anchorNav.setHeader(new H1("Main Header"));
+        anchorNav.setNoHistory(true);
 
         Div introductionContent = new Div(
                 new Text("Scroll down to see:"),
@@ -79,6 +81,6 @@ public class AnchorNavView extends VerticalLayout {
         selectionLine.getStyle().set("background", "var(--lumo-base-color)");
         selectionLine.getStyle().set("box-shadow", "var(--lumo-box-shadow-m)");
 
-        add(anchorNav, selectionLine);
+        add(new RouterLink("Go to second view", SecondView.class), anchorNav, selectionLine);
     }
 }

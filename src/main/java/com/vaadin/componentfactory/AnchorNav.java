@@ -43,10 +43,27 @@ import java.util.stream.Stream;
  * @author Vaadin Ltd
  */
 @Tag("vcf-anchor-nav")
-@NpmPackage(value = "@vaadin-component-factory/vcf-anchor-nav", version = "23.2.0")
+@NpmPackage(value = "@vaadin-component-factory/vcf-anchor-nav", version = "23.4.0")
 @JsModule("@vaadin-component-factory/vcf-anchor-nav")
 @SuppressWarnings("serial")
 public class AnchorNav extends HtmlContainer implements HasTheme {
+
+	public AnchorNav() {
+		this(false);
+	}
+
+	public AnchorNav(boolean noHistory) {
+		setNoHistory(noHistory);
+	}
+
+	/**
+	 * Toggles "no history" mode for the anchor. Setting the property for a single AnchorNav
+	 * enabled "no history" mode for the entire view.
+	 * @param noHistory
+	 */
+	public void setNoHistory(boolean noHistory) {
+		getElement().setProperty("noHistory", noHistory);
+	}
 
 	/**
 	 * Adds a section created from the given title and content.

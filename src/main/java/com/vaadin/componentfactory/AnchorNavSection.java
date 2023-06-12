@@ -24,6 +24,7 @@ import com.vaadin.componentfactory.util.SlotHelper;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HtmlContainer;
 import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.tabs.Tab;
 
 @Tag("vcf-anchor-nav-section")
