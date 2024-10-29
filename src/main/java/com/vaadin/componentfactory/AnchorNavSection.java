@@ -4,7 +4,7 @@ package com.vaadin.componentfactory;
  * #%L
  * Anchor Nav for Flow
  * %%
- * Copyright (C) 2020 Vaadin Ltd
+ * Copyright (C) 2020 - 2024 Vaadin Ltd
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ import com.vaadin.componentfactory.util.SlotHelper;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HtmlContainer;
 import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.tabs.Tab;
 
 @Tag("vcf-anchor-nav-section")
