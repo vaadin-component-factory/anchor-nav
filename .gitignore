@@ -8,6 +8,8 @@ target
 
 # Eclipse
 .project
+.settings
+.classpath
 
 # Browser drivers for local integration tests
 drivers/
@@ -20,3 +22,15 @@ webpack.generated.js
 dev
 
 frontend/generated
+package-lock.json
+package.json
+frontend/index.html
+src/main/dev-bundle
+vite.generated.ts
+vite.config.ts
+tsconfig.json
+types.d.ts
+pnpmfile.js
+.npmrc
+src/main/frontend/generated
+src/main/frontend/index.html
