@@ -4,7 +4,7 @@ package com.vaadin.componentfactory;
  * #%L
  * Anchor Nav for Flow
  * %%
- * Copyright (C) 2020 Vaadin Ltd
+ * Copyright (C) 2020 - 2024 Vaadin Ltd
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@ import java.util.stream.Stream;
  * @author Vaadin Ltd
  */
 @Tag("vcf-anchor-nav")
-@NpmPackage(value = "@vaadin-component-factory/vcf-anchor-nav", version = "23.4.0")
+@NpmPackage(value = "@vaadin-component-factory/vcf-anchor-nav", version = "3.0.1")
 @JsModule("@vaadin-component-factory/vcf-anchor-nav")
 @SuppressWarnings("serial")
 public class AnchorNav extends HtmlContainer implements HasTheme {
