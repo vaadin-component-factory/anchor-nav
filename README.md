@@ -17,6 +17,9 @@ anchorNav.addSection(new Span("Section 1"));
 anchorNav.addSection(new Span("Section 2"));
 ```
 
+## Important information about versioning
+**Component versions 23.x were deprecated in order to follow Semanting Versioning practices. Please use latest version 2.x for Vaadin 23+ and version 3.x for Vaadin 24.5.**  
+
 ## Compatibility
 
 - Version 1.x.x -> Vaadin 14+
