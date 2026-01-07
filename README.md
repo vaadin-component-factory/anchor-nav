@@ -1,4 +1,4 @@
-# Component Factory Anchor Nav for Vaadin 23
+# Component Factory Anchor Nav for Vaadin Flow
 
 [Live Demo ↗](https://incubator.app.fi/anchor-nav-demo/anchor-nav)
 
