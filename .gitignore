@@ -26,6 +26,7 @@ package-lock.json
 package.json
 frontend/index.html
 src/main/dev-bundle
+src/main/bundles
 vite.generated.ts
 vite.config.ts
 tsconfig.json
