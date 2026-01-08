@@ -5,19 +5,18 @@
 
     <groupId>com.vaadin.componentfactory</groupId>
     <artifactId>anchor-nav</artifactId>
-    <version>3.0.1-SNAPSHOT</version>
+    <version>4.0.0-SNAPSHOT</version>
     <name>Anchor Nav for Flow</name>
     <description>Integration of vcf-anchor-nav for Vaadin platform</description>
 
     <properties>
-        <vaadin.version>24.5.0</vaadin.version>
-        <flow.version>9.0.21</flow.version>
+        <vaadin.version>25.0.2</vaadin.version>
 
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <jetty.version>11.0.20</jetty.version>
+        <jetty.version>11.0.26</jetty.version>
     </properties>
     <organization>
         <name>Vaadin Component Factory</name>
@@ -98,6 +97,13 @@
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
+        
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-dev</artifactId>
+            <optional>true</optional>
+        </dependency>
+        
     </dependencies>
 
     <build>
@@ -259,7 +265,7 @@
                         <artifactId>jetty-maven-plugin</artifactId>
                         <version>${jetty.version}</version>
                         <configuration>
-                            <scanIntervalSeconds>0</scanIntervalSeconds>
+                            <scan>0</scan>
                             <supportedPackagings>
                                 <supportedPackaging>jar</supportedPackaging>
                             </supportedPackagings>

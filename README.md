@@ -25,6 +25,7 @@ anchorNav.addSection(new Span("Section 2"));
 - Version 1.x.x -> Vaadin 14+
 - Version 2.x.x -> Vaadin 23+
 - Version 3.x.x -> Vaadin 24.5.x (improved accessibility)
+- Version 4.x.x -> Vaadin 25
 
 ## Development instructions
 
