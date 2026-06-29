@@ -34,6 +34,7 @@ import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.shared.Registration;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -132,13 +133,116 @@ public class AnchorNav extends HtmlContainer implements HasTheme {
 	}
 
 	/**
+	 * The most recent index passed to {@link #setSelectedSection(int)}. Used by
+	 * {@link #scrollToSelectedSection()} to re-align to the section the caller
+	 * intended, independent of the client-side {@code selectedIndex} which may
+	 * drift as the user (or the intersection observer) changes the active tab.
+	 */
+	private Integer lastSelectedIndex;
+
+	/**
 	 * Selects a section based on its zero-based index.
 	 *
 	 * @param selectedIndex
 	 *                      the zero-based index of the selected section
 	 */
 	public void setSelectedSection(int selectedIndex) {
+		this.lastSelectedIndex = selectedIndex;
 		getElement().callJsFunction("_setSelectedSection", selectedIndex);
+	}
+
+	/**
+	 * Scrolls the given section to the top of the navigation area without
+	 * changing which tab is selected.
+	 * <p>
+	 * This is the recommended way to <em>re-align</em> after content above the
+	 * target has finished loading or resizing. A section's scroll position is an
+	 * absolute pixel offset computed when {@link #setSelectedSection(int)} runs;
+	 * if content above it then changes height (for example lazy-loaded grids or
+	 * images), that offset becomes stale and the view ends up at the wrong
+	 * section. Call this once the content has settled - typically from a
+	 * listener on a "content loaded" event fired by your loading logic - to
+	 * correct the alignment deterministically:
+	 *
+	 * <pre>
+	 * AnchorNavSection details = anchorNav.addSection("Details", ...);
+	 * anchorNav.setSelectedSection(details);
+	 * // when the lazy-loaded content reports it is ready:
+	 * anchorNav.scrollToSection(details);
+	 * </pre>
+	 *
+	 * @param section
+	 *                the section to scroll to, not {@code null}
+	 * @throws IllegalArgumentException
+	 *                                  if {@code section} is not a child of this
+	 *                                  component
+	 */
+	public void scrollToSection(AnchorNavSection section) {
+		int index = indexOf(section);
+		if (index < 0) {
+			throw new IllegalArgumentException(
+					"Section to scroll to must be a child: " + section);
+		}
+		scrollToSection(index);
+	}
+
+	/**
+	 * Scrolls the section with the given zero-based index to the top of the
+	 * navigation area without changing which tab is selected. See
+	 * {@link #scrollToSection(AnchorNavSection)} for when and why to use this.
+	 *
+	 * @param sectionIndex
+	 *                     the zero-based index of the section to scroll to
+	 */
+	public void scrollToSection(int sectionIndex) {
+		getElement().executeJs("this._scrollToSection($0, false, false);",
+				sectionIndex);
+	}
+
+	/**
+	 * Re-scrolls to the section most recently selected with
+	 * {@link #setSelectedSection(int)} or {@link #setSelectedSection(AnchorNavSection)}.
+	 * <p>
+	 * Convenience for the common case where you want to re-align to the
+	 * programmatically selected section without keeping a reference to it -
+	 * for example from a "content loaded" listener after lazy-loaded content above
+	 * it has settled. Equivalent to calling {@link #scrollToSection(int)} with the
+	 * last selected index. Has no effect if no section has been selected
+	 * programmatically yet.
+	 */
+	public void scrollToSelectedSection() {
+		if (lastSelectedIndex != null) {
+			scrollToSection(lastSelectedIndex);
+		}
+	}
+
+	/**
+	 * Registers a listener that re-aligns the view to the currently selected
+	 * section (see {@link #scrollToSelectedSection()}) whenever a DOM event with
+	 * the given name is fired on, or bubbles up to, this component.
+	 * <p>
+	 * This is the recommended way to correct the scroll position after content
+	 * above the selected section finishes loading or resizing, without having to
+	 * wire a listener through {@link #getElement()} yourself: have your loading
+	 * logic dispatch a (bubbling) DOM event once the content has settled, and
+	 * pass its name here.
+	 *
+	 * <pre>
+	 * anchorNav.setSelectedSection(details);
+	 * anchorNav.addRealignOnEvent("content-loaded");
+	 * // on the client, once lazy loading is done, e.g.:
+	 * // grid.dispatchEvent(new CustomEvent('content-loaded', { bubbles: true }));
+	 * </pre>
+	 *
+	 * @param eventName
+	 *                  the name of the DOM event that signals content is ready,
+	 *                  not {@code null}
+	 * @return a registration for removing the listener
+	 */
+	public Registration addRealignOnEvent(String eventName) {
+		Objects.requireNonNull(eventName, "eventName cannot be null");
+		return getElement().addEventListener(eventName,
+				event -> scrollToSelectedSection());
 	}
 
 	/**
