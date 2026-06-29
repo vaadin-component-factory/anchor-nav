@@ -160,8 +160,8 @@ public class AnchorNav extends HtmlContainer implements HasTheme {
 	 * absolute pixel offset computed when {@link #setSelectedSection(int)} runs;
 	 * if content above it then changes height (for example lazy-loaded grids or
 	 * images), that offset becomes stale and the view ends up at the wrong
-	 * section. Call this once the content has settled &mdash; typically from a
-	 * listener on a "content loaded" event fired by your loading logic &mdash; to
+	 * section. Call this once the content has settled - typically from a
+	 * listener on a "content loaded" event fired by your loading logic - to
 	 * correct the alignment deterministically:
 	 *
 	 * <pre>
@@ -204,7 +204,7 @@ public class AnchorNav extends HtmlContainer implements HasTheme {
 	 * {@link #setSelectedSection(int)} or {@link #setSelectedSection(AnchorNavSection)}.
 	 * <p>
 	 * Convenience for the common case where you want to re-align to the
-	 * programmatically selected section without keeping a reference to it &mdash;
+	 * programmatically selected section without keeping a reference to it -
 	 * for example from a "content loaded" listener after lazy-loaded content above
 	 * it has settled. Equivalent to calling {@link #scrollToSection(int)} with the
 	 * last selected index. Has no effect if no section has been selected
