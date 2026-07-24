@@ -44,7 +44,7 @@ import java.util.stream.Stream;
  * @author Vaadin Ltd
  */
 @Tag("vcf-anchor-nav")
-@NpmPackage(value = "@vaadin-component-factory/vcf-anchor-nav", version = "4.0.0")
+@NpmPackage(value = "@vaadin-component-factory/vcf-anchor-nav", version = "4.0.1")
 @JsModule("@vaadin-component-factory/vcf-anchor-nav")
 @SuppressWarnings("serial")
 public class AnchorNav extends HtmlContainer implements HasTheme {
